@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<p id="text">apple</p>
+	<ul>
+		<li><a href="#apple">apple</a></li>
+		<li><a href="#orange">orange</a></li>
+		<li><a href="#pear">pear</a></li>
+	</ul>
+	<script>
+		//var t = document.getElementById('text');
+		//console.log(text.innnerHTML);
+		//专门为移动端，h5/css3存在选择器
+		function $(selector){
+			return document.querySelector(selector); 	
+		}
+		var t = $('#text');
+		var ul = $('ul');
+		//现在我要为每个li标签添加点击事件，此处
+		//我不会简单的使用for循环三次进行绑定
+		/*ul.addEventListener('click', function(event){
+			//addEventListener称为dom2级事件, 它可以为同一个dom节点，添加多个相同事件（点击），attachEvent(兼容IE)
+			//onclick dom0级事件，只能添加相同事件一个，好处是，兼容所有浏览器	 
+
+			//event 事件对象
+			//我们可以通过event.target 获取到当前点击的元素	
+			console.log(event.target);
+			t.innerHTML = event.target.innerHTML;
+		})*/
+		//  done/well/better
+
+		//我们可以监听Hash值（锚点）的改变
+		t.innerHTML = location.hash.slice(1) || 'apple';
+		/*if(location.hash) {
+			t.innerHTML = location.hash.slice(1);
+		}*/
+		window.onhashchange = function(){
+			//它可以监听hash值的改变
+			console.log('我的hash值发生了改变');
+			//获取当前hash的值
+			t.innerHTML = location.hash.slice(1);
+		}
+		//单页面开发的核心，通过监听hash值的改变，
+		//实现对单页面开发中页面状态的维护
+	</script>
+</body>
+</html>
